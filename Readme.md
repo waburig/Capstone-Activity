@@ -1,5 +1,6 @@
-Final Capstone Activity
-Challenge 1: SQL Injection
+**Final Capstone Activity**
+**Challenge 1: SQL Injection**
+
 In this part, you must discover user account information on a server and crack the password of Bob Smith's account. You will then locate the file that contains the Challenge 1 code and use Bob Smith's account credentials to open the file at 192.168.0.10 to view its contents.
 Step 1: Preliminary setup
 a.	Open a browser and go to the website at 10.5.5.12.
@@ -9,31 +10,32 @@ c.	Set the DVWA security level to low and click Submit.
 
 I opened the website above and setup the security as instructed. On the userid I entered 1 in the user the user ID the results will be as below.
 
-Screenshot1
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot1.png
 
 Step 2: Retrieve the user credentials for the Bob Smith's account.
 a.	Identify the table that contains usernames and passwords.
 b.	Locate a vulnerable input form that will allow you to inject SQL commands.
 c.	Retrieve the username and the password hash for Bob Smith's account.
-From the instructions above I tried **1' UNION SELECT 1,2 -- - ** which gave the below results
+From the instructions above I tried **1' UNION SELECT 1,2 -- -** which gave the below results
 
-Screenshot2
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot2.png
 
 On the same I used this command gave the below results: **1' UNION SELECT user, password FROM users -- -**
 
-Screenshot3
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot3.png
 
 Step 3: Crack Bob Smith's account password.
 Use any password hash cracking tool desired to crack Bob Smith’s password.
 To target bob, the following command is used: **1' UNION SELECT user, password FROM users WHERE first_name='Bob' -- -**
 
-Screenshot4 
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot4.png
+
 
 I cracked the Bob Smith’s Password Hash as shown below.
 hash:5f4dcc3b5aa765d61d8327deb882cf99
-This cracks to:password
+**This cracks to:password**
 
-Screenshot5
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot5.png
 
 Step 4: Locate and open the file with Challenge 1 code.
 a.	Log into 192.168.0.10 as Bob Smith.
@@ -45,7 +47,7 @@ Congratulations!
 You found flag for challange 1!
 The code for this challange is 8748wf8j.
 
-Screenshot6
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot6.png
 
 Step 5: Research and propose SQL attack remediation.
 1. Use Parameterized Queries / Prepared Statements
@@ -89,8 +91,7 @@ b.	Set the application security level to low.
 
 The website was opened and security set to low
 
-Screenshot7
-
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot7.png
 
 Step 2: From the results of your reconnaissance, determine which directories are viewable using a web browser and URL manipulation.
 Perform reconnaissance on the server to find directories where indexing was found.
@@ -101,8 +102,7 @@ Indexed (listable) directories found:
 •	http://10.5.5.12/docs/
 •	http://10.5.5.12/external/
 
-Screenshot8
-
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot8.png
 
 Step 3: View the files contained in each directory to find the file containing the flag.
 Create a URL in the web browser to access the viewable subdirectories. Find the file with the code for Challenge 2 located in one of the subdirectories.
@@ -114,7 +114,7 @@ DIRECTORY: http://10.5.5.12/docs/
 
 The filename with the Challenge 2 code was **db_form.html.**
 
-Screenshot9
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot9.png
 
 The subdirectory which held the file was **/config/ subdirectory** 
 
@@ -125,7 +125,7 @@ You found the flag file for Challenge 2!
 
 The code for this flag is:  aWe-4975
 
-Screenshot10
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot10.png
 
 Step 4: Research and propose directory listing exploit remediation.
 Restrict Access to Sensitive Directories
@@ -138,12 +138,12 @@ Disable Directory Indexing
 •	Options -Indexes
 •	This prevents users from viewing directory contents.
 
-Challenge 3: Exploit open SMB Server Shares
+**Challenge 3: Exploit open SMB Server Shares**
 In this part, you want to discover if there are any unsecured shared directories located on an SMB server in the 10.5.5.0/24 network. You can use any of the tools you learned in earlier labs to find the drive shares available on the servers.
 Step 1: Scan for potential targets running SMB.
 I have used nmap scan tool to scan the 10.5.5.0/24 LAN for potential targets for SMB enumeration.
 
-Screenshot11
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot11.png
 
 The host gravemind.pc (10.5.5.14) has SMB-related ports 139 and 445 open, indicating it is running SMB services. 
 
@@ -153,7 +153,7 @@ Use a tool to scan the device that is running SMB and locate the shares that can
 The SMB server lists the shares homes, workfiles, print$, and IPC$. All of these shares are accessible using anonymous authentication, 
 indicating that the SMB server allows unauthenticated access refer to the above screenshot.
 
-Screenshot12
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot12.png
 
 Step 3: Investigate each shared directory to find the file.
 Use the SMB-native client to access the drive shares on the SMB server. Use the dir, ls, cd, and other commands to find subdirectories and files.
@@ -161,7 +161,7 @@ Locate the file with the Challenge 3 code. Download the file and open it locally
 The file is found in the print$ SMB share, and the name of the file with the challenge 3 code is sxij42.txt.
 The code for this challenge is NWs39691.
 
-Screenshot13
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot13.png
 
 Here are two clear and correct remediation methods you can submit for SMB attack prevention:
 SMB Attack Remediation Methods
@@ -180,9 +180,9 @@ Step 1: Find and analyze the SA.pcap file.
 Analyze the content of the PCAP file to determine the IP address of the target computer and the URL location of the file with the Challenge 4 code.
 **The Ip address of the target computer is 10.5.5.11. The PCAP below shows repeated HTTP requests from 10.5.5.1 to 10.5.5.11**
 
-Screenshot14
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot14.png
 
-Screenshot15
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot15.png
 
 From the HTTP GET requests visible in the PCAP, the following directories on the target computer (10.5.5.11) are revealed:
 	•	/styles/
@@ -202,7 +202,7 @@ Step 2: Use a web browser to display the contents of the directories on the targ
 Use a web browser to investigate the URLs listed in the Wireshark output. Find the file with the code for Challenge 4.
 **The URL of the file is: http://10.5.5.11/data/user_accounts.xml. This XML file contains the entry labeled Flag, which reveals the Challenge 4 code.**
 
-Screenshot16
+https://github.com/waburig/Capstone-Activity/blob/main/Screenshots4/Screenshot16.png
 
 The content of the above file is:
 <Employees>
@@ -368,6 +368,7 @@ Step 3: Research and propose remediation that would prevent file content from be
 Two remediation methods are:
 1.	Implement HTTPS (TLS/SSL) to encrypt data in transit and prevent clear text transmission.
 2.	Apply proper access controls by restricting directory access and disabling directory listing for sensitive files.
+
 
 
 
